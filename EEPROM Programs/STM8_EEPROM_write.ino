@@ -1,6 +1,6 @@
 #include <EEPROM.h>
 
-/** the current address in the EEPROM (i.e. which byte we're going to write to next) **/
+//the current address in the EEPROM (i.e. which byte we're going to write to next)
 int addr = 0;
 
 void setup() {
@@ -22,18 +22,7 @@ void loop() {
   ***/
 
   EEPROM_write(addr, val);
-
-  /***
-    Advance to the next address, when at the end restart at the beginning.
-
-    Larger AVR processors have larger EEPROM sizes, E.g:
-    - Arduno Duemilanove: 512b EEPROM storage.
-    - Arduino Uno:        1kb EEPROM storage.
-    - Arduino Mega:       4kb EEPROM storage.
-
-    Rather than hard-coding the length, you should use the pre-provided length function.
-    This will make your code portable to all AVR processors.
-  ***/
+   // Advance to the next address, when at the end restart at the beginning.
   addr = addr + 1;
   if (addr == EEPROM_length()) {
     addr = 0;
